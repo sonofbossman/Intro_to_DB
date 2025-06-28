@@ -1,25 +1,24 @@
 import mysql.connector
 from mysql.connector import Error
-from dotenv import load_dotenv
-load_dotenv()
-import os
 
 try:
-  mydb = mysql.connector.connect(
-    host=os.getenv('HOST'),
-    user=os.getenv('USER'),
-    password=os.getenv('PASSWORD')
-  )
+    # Connect to MySQL server
+    connection = mysql.connector.connect(
+        host='localhost',
+        user='your_username',        # Replace with your MySQL username
+        password='your_password'     # Replace with your MySQL password
+    )
 
-  if mydb.is_connected():
-    print("MySQL connection is successful.")
-    dbcursor = mydb.cursor()
-    dbcursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
-    print("Database 'alx_book_store' created successfully!")
+    if connection.is_connected():
+        cursor = connection.cursor()
+        cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+        print("Database 'alx_book_store' created successfully!")
+
 except Error as e:
-  print(e)
+    print(f"Error while connecting to MySQL: {e}")
+
 finally:
-  if 'mydb' in locals() and mydb.is_connected():
-    dbcursor.close()
-    mydb.close()
-    print("MySQL connection is closed.")
+    if 'connection' in locals() and connection.is_connected():
+        cursor.close()
+        connection.close()
+        print("MySQL connection is closed.")
