@@ -3,6 +3,13 @@ CREATE DATABASE IF NOT EXISTS alx_book_store;
 
 USE alx_book_store;
 
+-- Authors: Stores information about authors.
+CREATE TABLE  Authors(
+  author_id INT AUTO_INCREMENT PRIMARY KEY,
+  author_name VARCHAR(130)
+);
+
+
 -- Books: Stores information about books available in the bookstore.
 CREATE TABLE  Books(
   book_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -12,14 +19,6 @@ CREATE TABLE  Books(
   publication_date DATE,
   FOREIGN KEY(author_id) REFERENCES Authors(author_id)
 );
-
-
--- Authors: Stores information about authors.
-CREATE TABLE  Authors(
-  author_id INT AUTO_INCREMENT PRIMARY KEY,
-  author_name VARCHAR(130)
-);
-
 
 -- Customers: Stores information about customers.
 CREATE TABLE  Customers(
