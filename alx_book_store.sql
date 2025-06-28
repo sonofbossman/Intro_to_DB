@@ -6,7 +6,7 @@ USE alx_book_store;
 -- Authors: Stores information about authors.
 CREATE TABLE  Authors(
   author_id INT AUTO_INCREMENT PRIMARY KEY,
-  author_name VARCHAR(130)
+  author_name VARCHAR(215)
 );
 
 
