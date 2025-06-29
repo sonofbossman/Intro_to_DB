@@ -5,21 +5,21 @@ load_dotenv()
 import os
 
 try:
-  mydb = mysql.connector.connect(
+  connection = mysql.connector.connect(
     host=os.getenv('HOST'),
     user=os.getenv('USER'),
     password=os.getenv('PASSWORD')
   )
 
-  if mydb.is_connected():
+  if connection.is_connected():
     print("MySQL connection is successful.")
-    mycursor = mydb.cursor()
-    mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+    mycursor = connection.cursor()
+    mycursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store;")
     print("Database 'alx_book_store' created successfully!")
 except Exception as e:
   print(e)
 finally:
-  if 'mydb' in locals() and mydb.is_connected():
+  if 'connection' in locals() and connection.is_connected():
     mycursor.close()
-    mydb.close()
+    connection.close()
     print("MySQL connection is closed.")
