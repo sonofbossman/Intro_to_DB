@@ -19,7 +19,7 @@ try:
 except Exception as e:
   print(e)
 finally:
-  if 'connection' in locals() and connection.is_connected():
+  if connection.is_connected() and 'connection' in locals():
     mycursor.close()
     connection.close()
     print("MySQL connection is closed.")
